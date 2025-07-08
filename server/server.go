@@ -2,11 +2,14 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
 	"os"
 	"os/exec"
+	"regexp"
+	"strconv"
 	"time"
 )
 
@@ -30,7 +33,7 @@ func _LaunchServer(addr string) {
 	_FileServe(mux, "/script/", "./src/script")
 	_FileServe(mux, "/style/", "./src/style")
 	_FileServe(mux, "/assets/code/server/", "./server")
-	
+
 	log.Printf("Server running at \033[38;2;234;154;12m%s\033[m", addr)
 
 	server := &http.Server{
@@ -54,8 +57,28 @@ func _FileServe(mux *http.ServeMux, route, filename string) {
 	})
 }
 
+var PORT_PATTERN = regexp.MustCompile(`^:\d+$`)
+
 func main() {
-	_LaunchServer(":80")
+
+	port := ":8080"
+
+	if len(os.Args) > 1 {
+		port = os.Args[1]
+
+		if !PORT_PATTERN.MatchString(port) {
+			fmt.Println("bad port, try \":<number>\"")
+			return
+		}
+
+		num, _ := strconv.Atoi(port[1:])
+		if num >= 0x10000 {
+			fmt.Println("too high, try a 16-bit unsigned integer")
+			return
+		}
+	}
+
+	_LaunchServer(port)
 }
 
 func _StaticFileServe(route, filename string) (string, func(http.ResponseWriter, *http.Request)) {
