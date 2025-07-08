@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "target": "ES2024",
+        "module": "ESNext",
+        "moduleResolution": "bundler",
+        "outDir": "src/script/dist",
+        "rootDir": "src/script",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "declaration": false,
+        "removeComments": true,
+        "noEmitOnError": true,
+        "sourceMap": true
+    },
+    "include": [
+        "src/script/**/*.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "src/script/**/*.js"
+    ]
+}

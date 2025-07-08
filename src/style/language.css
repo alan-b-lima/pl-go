@@ -1,0 +1,53 @@
+.go-source {
+
+    & {
+        white-space: pre;
+    }
+
+    .token {
+        & {
+            white-space: pre;
+            tab-size: 4ch;
+        }
+
+        &.keyword {
+            color: #4f387a;
+            font-weight: bold;
+        }
+
+        &.identifier {
+            color: #40789e;
+
+            &.function {
+                color: #d4a60c;
+            }
+
+            &.type {
+                color: #276b51;
+            }
+        }
+
+        &.operator {
+            color: #272727;
+        }
+
+        &.comment {
+            color: #09801d;
+            font-style: italic;
+        }
+
+        &.string {
+            color: #c05429;
+        }
+
+        &.number {
+            color: #74a00d;
+        }
+
+        &.boolean,
+        &.nil {
+            color: #3b3b9e;
+            font-style: italic;
+        }
+    }
+}
