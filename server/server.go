@@ -28,10 +28,8 @@ func _LaunchServer(addr string) {
 
 	mux.HandleFunc("POST /gorun", _GoRunHandler)
 
-	_FileServe(mux, "/", "./src/pages")
+	_FileServe(mux, "/", "./src")
 	_FileServe(mux, "/assets/", "./assets")
-	_FileServe(mux, "/script/", "./src/script")
-	_FileServe(mux, "/style/", "./src/style")
 	_FileServe(mux, "/assets/code/server/", "./server")
 
 	log.Printf("Server running at \033[38;2;234;154;12m%s\033[m", addr)
@@ -57,7 +55,7 @@ func _FileServe(mux *http.ServeMux, route, filename string) {
 	})
 }
 
-var PORT_PATTERN = regexp.MustCompile(`^:\d+$`)
+var PortPattern = regexp.MustCompile(`^:\d+$`)
 
 func main() {
 
@@ -66,7 +64,7 @@ func main() {
 	if len(os.Args) > 1 {
 		port = os.Args[1]
 
-		if !PORT_PATTERN.MatchString(port) {
+		if !PortPattern.MatchString(port) {
 			fmt.Println("bad port, try \":<number>\"")
 			return
 		}
@@ -79,11 +77,6 @@ func main() {
 	}
 
 	_LaunchServer(port)
-}
-
-func _StaticFileServe(route, filename string) (string, func(http.ResponseWriter, *http.Request)) {
-	handler := http.StripPrefix(route, http.FileServer(http.Dir(filename)))
-	return "GET " + route, handler.ServeHTTP
 }
 
 func _GoRunHandler(w http.ResponseWriter, r *http.Request) {

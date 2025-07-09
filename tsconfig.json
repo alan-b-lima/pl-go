@@ -1,18 +1,25 @@
 {
     "compilerOptions": {
-        "target": "ES2024",
-        "module": "ESNext",
-        "moduleResolution": "bundler",
+        "target": "esnext",
+        "module": "es2022",
         "outDir": "src/script/dist",
         "rootDir": "src/script",
+        "moduleResolution": "node",
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
         "declaration": false,
+        "noImplicitAny": false,
+        "strictFunctionTypes": true,
+        "strictBindCallApply": true,
+        "strictPropertyInitialization": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "noImplicitThis": true,
+        "alwaysStrict": true,
         "removeComments": true,
-        "noEmitOnError": true,
-        "sourceMap": true
+        "noEmitOnError": true
     },
     "include": [
         "src/script/**/*.ts"

@@ -22,28 +22,27 @@ This project is structures in the following hierarchy:
 │   ├───log
 │   └───server.go
 └───src
-    ├───pages
-    │   └───index.html
     ├───script
     │   ├───lexer.ts
-    │   ├───main.js
+    │   ├───main.ts
     │   └───run-api.ts
-    └───style
-        ├───language.css
-        └───style.css
+    ├───style
+    │   ├───language.css
+    │   └───style.css
+    └───index.html
 ```
 
 * `assets/code/`: code samples for the presentation;
 * `assets/images/`: images for the presentation;
 * `server/server.go`: source code for the server that both serves the files and runs the Go code on the playgrounds;
-* `src/pages/index.html`: the main display page;
 * `src/script`: the Front-End logic and API's used by the application:
     * `lexer.ts`: a simple syntatic lexer and highlighter for a subset of Go valid programs,
-    * `main.js`: the main script that handles the page logic, including the code editor and the API calls,
+    * `main.ts`: the main script that handles the page logic, including the code editor and the API calls,
     * `run-api.ts`: the API that requests the execution of the Go code on the server;
 * `src/style`: the stylesheets for the application:
     * `language.css`: the styles for the Go code syntax highlighter,
     * `style.css`: the main styles for the application.
+* `src/index.html`: the main display page;
 
 ## Running the Project
 
@@ -54,3 +53,17 @@ go run server/server.go [<port>]
 ```
 
 It's important that you run the server from the root directory, because the server expects to find the `assets` and `src` directories in the same level as the `server` directory. After starting the server, you can access the presentation by opening your web browser and navigating to `http://localhost:<port>`, where `<port>` is the port you specified or `8080` if you didn't specify any port.
+
+Furthermore, you must compile the TypeScript files in the `src/script` directory to JavaScript. You can do this by running the following command from the `src/script` directory:
+
+```
+tsc
+```
+
+If you don't have TypeScript installed, you can install it globally using npm:
+
+```
+npm install -g typescript
+```
+
+If you don't have npm installed, you can download Node.js from the [official Node.js website](https://nodejs.org/), which includes npm.
