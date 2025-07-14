@@ -34,17 +34,20 @@ This project is structures in the following hierarchy:
     └───server.go
 ```
 
-* `assets/code/`: code samples for the presentation;
-* `assets/images/`: images for the presentation;
-* `server/server.go`: source code for the server that both serves the files and runs the Go code on the playgrounds;
-* `src/script`: the Front-End logic and API's used by the application:
+* `client/public/`: the public files that are served by the server:
+    * `assets/`: the assets used by the application:
+        * `code/`: code samples for the presentation;
+        * `images/`: images for the presentation;
+    * `script/`: the transpiled scripts used by the application;
+    * `style`: the stylesheets for the application:
+        * `language.css`: the styles for the Go code syntax highlighter,
+        * `style.css`: the main styles for the application;
+    * `index.html`: the main display page;
+* `client/src/`: the Front-End logic and API's used by the application:
     * `lexer.ts`: a simple syntatic lexer and highlighter for a subset of Go valid programs,
     * `main.ts`: the main script that handles the page logic, including the code editor and the API calls,
     * `run-api.ts`: the API that requests the execution of the Go code on the server;
-* `src/style`: the stylesheets for the application:
-    * `language.css`: the styles for the Go code syntax highlighter,
-    * `style.css`: the main styles for the application.
-* `src/index.html`: the main display page;
+* `server/server.go`: source code for the server that both serves the files and runs the Go code on the playgrounds.
 
 ## Running the Project
 
@@ -54,4 +57,4 @@ To run the project, you need to have Go installed on your machine. You can downl
 go run server/server.go [<port>]
 ```
 
-It's important that you run the server from the root directory, because the server expects to find the `assets` and `src` directories in the same level as the `server` directory. After starting the server, you can access the presentation by opening your web browser and navigating to `http://localhost:<port>`, where `<port>` is the port you specified or `:8080` if you don't specify any port.
+It's important that you run the server from the root directory, because the server expects to find the `client` directory in the same level as the `server` directory. After starting the server, you can access the presentation by opening your web browser and navigating to `http://localhost:<port>`, where `<port>` is the port you specified or `:8080` if you don't specify any port.

@@ -10,7 +10,7 @@ import (
 	"time"
 )
 
-const LenghtThreshold = 1
+const LenghtThreshold = 32
 
 func SingleThreadedQuickSort(arr []int) {
 

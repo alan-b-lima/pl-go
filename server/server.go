@@ -69,7 +69,7 @@ func main() {
 		}
 
 		num, _ := strconv.Atoi(port[1:])
-		if num >= 0x10000 {
+		if num < 0 && 0xFFFF < num {
 			fmt.Println("too high, try a 16-bit unsigned integer")
 			return
 		}
@@ -96,27 +96,27 @@ func _GoRunHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	tmp_file, err := os.CreateTemp("", "code-*.go")
+	tmpFile, err := os.CreateTemp("", "code-*.go")
 	if err != nil {
 		http.Error(w, "failed to create temp file", http.StatusInternalServerError)
 		return
 	}
-	defer os.Remove(tmp_file.Name())
+	defer os.Remove(tmpFile.Name())
 
-	_, err = tmp_file.Write([]byte(c.Code))
+	_, err = tmpFile.Write([]byte(c.Code))
 	if err != nil {
 		http.Error(w, "failed to write file", http.StatusInternalServerError)
 		return
 	}
-	tmp_file.Close()
+	tmpFile.Close()
 
-	args := append([]string{"run", tmp_file.Name()}, c.Args...)
+	args := append([]string{"run", tmpFile.Name()}, c.Args...)
 	cmd := exec.Command("go", args...)
 
-	cmd_output, err := cmd.CombinedOutput()
+	cmdOutput, _ := cmd.CombinedOutput()
 
 	response := _ResponseBody{
-		Output:   cmd_output,
+		Output:   cmdOutput,
 		ExitCode: cmd.ProcessState.ExitCode(),
 	}
 
