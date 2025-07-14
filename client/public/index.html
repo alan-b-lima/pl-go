@@ -9,7 +9,7 @@
     <link rel="icon" href="/assets/images/logo-blue.svg">
     <title>Go</title>
 
-    <script type="module" src="/script/dist/main.js"></script>
+    <script type="module" src="/script/main.js"></script>
 </head>
 
 <body>
@@ -51,9 +51,9 @@
                 <h1>Introdução</h1>
 
                 <p>
-                    A linguagem Go, também connhecida como GoLang, é uma linguagem de programação desenvolvida pela
-                    Google em 2007, concebida por uma equipe de renomados engenheiros (Robert Griesemer, Rob Pike e Ken
-                    Thompson) e lançada oficialmente em 2009. Com sua primeira versão estável lançada em 2012.
+                    A linguagem Go, também connhecida como GoLang, é uma linguagem de programação compilada e coletada a lixo, desenvolvida pela
+                    Google em 2007, concebida por uma equipe de renomados engenheiros (Robert Griesemer, Rob Pike e Ken Thompson) e lançada
+                    oficialmente em 2009. Com sua primeira versão estável lançada em 2012.
                 </p>
 
                 <p>
@@ -200,6 +200,8 @@
 
         <article class="general">
 
+            <code data-source="/assets/code/goroutines-2/main.go"></code>
+
             <div class="text">
                 <h1>Especificação</h1>
 
@@ -226,7 +228,41 @@
                 </p>
             </div>
 
-            <code data-source="/assets/code/example/main.go"></code>
+        </article>
+    </section>
+
+    <section class="slide headed">
+        <header>
+            <div class="logo"></div>
+            <h1>Paradigma</h1>
+
+            <span class="page-number">0</span>
+        </header>
+
+        <article class="general">
+
+            <div class="text">
+                <h1>Paradigma</h1>
+
+                <p>
+                    Go é uma linguagem de programação multiparadigma, o que significa que suporta diferentes estilos de
+                    programação. Os principais paradigmas suportados pelo Go são:
+                </p>
+
+                <ul class="bullet-list">
+                    <li>Programação Imperativa: o estilo mais comum, onde o programador descreve passo a passo como o
+                        programa deve ser executado</li>
+                    <li>Programação Funcional: suporte a funções de primeira classe, permitindo passar funções como
+                        argumentos e retornar funções de outras</li>
+                    <li>Programação Orientada a Objetos: embora Go não tenha classes, ele suporta tipos e métodos,
+                        permitindo encapsulamento, e, de certa forma, herança</li>
+                    <li>Programação Concorrente: com goroutines e canais, Go facilita a escrita de programas que podem
+                        executar várias tarefas ao mesmo tempo</li>
+                </ul>
+
+            </div>
+
+            <code data-source="/assets/code/paradigm/main.go"></code>
 
         </article>
     </section>
@@ -454,7 +490,7 @@
                 <input class="submit" type="button" value="Run">
             </div>
 
-            <code class="input" spellcheck="false" data-source="/assets/code/goroutines-2/main.go"></code>
+            <code class="input" spellcheck="false" data-source="/assets/code/goroutines-3/main.go"></code>
 
             <code class="output"></code>
         </article>
@@ -513,50 +549,14 @@
                 <h1>Conclusão</h1>
 
                 <p>
-                    Ao encerrarmos nossa jornada pela linguagem Go, fica claro que não estamos falando apenas de
-                    mais uma ferramenta no vasto universo da programação.
+                    Ao adentrarmos nossa jornada pela linguagem Go, fica claro que nao estamos falando apenas de mais uma ferramenta no vasto universo
+                    da programação. Go nasceu de uma necessidade real, de uma frustração de seus criadores com as ferramentas existentes, e sua
+                    solução foi prática: simplicidade aliada á performance.
                 </p>
 
                 <p>
-                    Go nasceu de uma necessidade real, de uma frustração dentro da Google com as ferramentas
-                    existentes, e sua solução foi prática: simplicidade aliada à performance.
+                    Go nos ensina uma lição valiosa, na complexidade de software modernos, as vezes a solução mais sofisticada é uma mais simples.
                 </p>
-
-                <p>
-                    Go nos ensina uma lição valiosa, na complexidade de software modernos, às vezes a solução mais
-                    sofisticada é a mais simples.
-                </p>
-
-            </div>
-
-            <code data-source="/assets/code/hello/main.go"></code>
-
-        </article>
-    </section>
-
-    <section class="slide headed">
-        <header>
-            <div class="logo"></div>
-            <h1>Referências</h1>
-
-            <span class="page-number">0</span>
-        </header>
-
-        <article class="general">
-
-            <div class="text">
-
-                <h1>Referências</h1>
-
-                <var><a href="https://go.dev">https://go.dev/</a></var>
-
-                <var><a href="https://go.dev/spec">https://go.dev/spec</a></var>
-
-                <var><a href="https://go.dev/tour">https://go.dev/tour</a></var>
-
-                <var><a href="https://go.dev/doc">https://go.dev/doc/</a></var>
-
-                <var><a href="https://go.dev/doc/effective_go">https://go.dev/doc/effective_go</a></var>
 
             </div>
 

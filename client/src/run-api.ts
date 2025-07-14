@@ -113,4 +113,4 @@ function from_base64(input: string): string | null {
     }
 }
 
-export { from_base64, run_go_code, to_base64 }
+export { run_go_code }

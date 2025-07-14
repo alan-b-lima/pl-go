@@ -13,23 +13,25 @@ Since Go is language often used in BackEnd servers, and the presentation is abou
 This project is structures in the following hierarchy:
 
 ```
-├───assets
-│   ├───code
-│   │   └───...
-│   └───images
-│       └───...
-├───server
-│   ├───log
-│   └───server.go
-└───src
-    ├───script
-    │   ├───lexer.ts
-    │   ├───main.ts
-    │   └───run-api.ts
-    ├───style
-    │   ├───language.css
-    │   └───style.css
-    └───index.html
+├───client
+│   ├───public
+│   │   ├───assets
+│   │   │   ├───code
+│   │   │   │   └───...
+│   │   │   └───images
+│   │   │       └───...
+│   │   ├───script
+│   │   │   └───...
+│   │   ├───style
+│   │   │   ├───language.css
+│   │   │   └───style.css
+│   │   └───index.html
+│   └───src
+│       ├───lexer.ts
+│       ├───main.ts
+│       └───run-api.ts
+└───server
+    └───server.go
 ```
 
 * `assets/code/`: code samples for the presentation;
@@ -52,18 +54,4 @@ To run the project, you need to have Go installed on your machine. You can downl
 go run server/server.go [<port>]
 ```
 
-It's important that you run the server from the root directory, because the server expects to find the `assets` and `src` directories in the same level as the `server` directory. After starting the server, you can access the presentation by opening your web browser and navigating to `http://localhost:<port>`, where `<port>` is the port you specified or `8080` if you didn't specify any port.
-
-Furthermore, you must compile the TypeScript files in the `src/script` directory to JavaScript. You can do this by running the following command from the `src/script` directory:
-
-```
-tsc
-```
-
-If you don't have TypeScript installed, you can install it globally using npm:
-
-```
-npm install -g typescript
-```
-
-If you don't have npm installed, you can download Node.js from the [official Node.js website](https://nodejs.org/), which includes npm.
+It's important that you run the server from the root directory, because the server expects to find the `assets` and `src` directories in the same level as the `server` directory. After starting the server, you can access the presentation by opening your web browser and navigating to `http://localhost:<port>`, where `<port>` is the port you specified or `:8080` if you don't specify any port.

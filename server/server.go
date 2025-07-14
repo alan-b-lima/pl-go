@@ -28,8 +28,7 @@ func _LaunchServer(addr string) {
 
 	mux.HandleFunc("POST /gorun", _GoRunHandler)
 
-	_FileServe(mux, "/", "./src")
-	_FileServe(mux, "/assets/", "./assets")
+	_FileServe(mux, "/", "./client/public")
 	_FileServe(mux, "/assets/code/server/", "./server")
 
 	log.Printf("Server running at \033[38;2;234;154;12m%s\033[m", addr)

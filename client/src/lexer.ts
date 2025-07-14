@@ -107,67 +107,16 @@ function highlight(source: HTMLElement): void {
             if (i + 1 < token_stream.length && token_stream[i + 1].equals("operator", "(")) {
                 token_element.classList.add("function")
             }
+
+            else if (i - 1 > 0 && token_stream[i - 1].equals("keyword", "func")) {
+                token_element.classList.add("function")
+            }
         }
 
         source.append(token_element)
     }
 }
 
-function lex_and_highlight(source: HTMLElement): void {
-
-    const input = source.textContent
-    if (input === null) {
-        return
-    }
-
-    source.classList.add("go-source")
-    source.replaceChildren()
-
-    let index = 0
-    outer: while (index < input.length) {
-
-        for (let i = 0; i < PATTERNS.length; i++) {
-            const pattern = PATTERNS[i]
-
-            const substring = input.substring(index)
-            const result = substring.match(pattern[0])
-
-            if (result !== null) {
-
-                const kind = pattern[1]
-                const slice = result[0]
-
-                index += slice.length
-
-                const token_element = document.createElement("span")
-                token_element.textContent = slice
-                token_element.classList.add("token", kind)
-
-                if (kind === "whitespace") {
-                    token_element.textContent = slice.replace(/\r/g, "")
-                }
-
-                // if (kind === "identifier") {
-                //     if (i + 1 < token_stream.length && token_stream[i + 1].equals("operator", "(")) {
-                //         token_element.classList.add("function")
-                //     }
-                // }
-
-                source.append(token_element)
-
-                continue outer
-            }
-        }
-
-        const token_element = document.createElement("span")
-        token_element.textContent = input.substring(index, index + 1)
-        token_element.classList.add("token", "unknown")
-        index++
-    }
-}
-
 export {
-    // lex_and_highlight as highlight,
-    // highlight as highlight_old
     highlight
 }

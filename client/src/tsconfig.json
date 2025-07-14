@@ -2,8 +2,8 @@
     "compilerOptions": {
         "target": "esnext",
         "module": "es2022",
-        "outDir": "src/script/dist",
-        "rootDir": "src/script",
+        "outDir": "../public/script/",
+        "rootDir": ".",
         "moduleResolution": "node",
         "strict": true,
         "esModuleInterop": true,
@@ -22,10 +22,10 @@
         "noEmitOnError": true
     },
     "include": [
-        "src/script/**/*.ts"
+        "**/*.ts"
     ],
     "exclude": [
         "node_modules",
-        "src/script/**/*.js"
+        "**/*.js"
     ]
 }

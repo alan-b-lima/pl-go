@@ -173,7 +173,7 @@ function on_arrow_keydown(evt: KeyboardEvent): void {
     }
 }
 
-function on_input_keydown(evt: any): void {
+function on_input_keydown(evt: KeyboardEvent): void {
 
     switch (evt.key) {
         case "Tab": {
