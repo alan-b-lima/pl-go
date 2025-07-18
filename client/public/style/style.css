@@ -166,7 +166,7 @@ body:not(.printable) .slide:not(.current) {
 
             .logo {
                 aspect-ratio: 300 / 112;
-                background-image: url(/assets/images/logo-blue.svg);
+                background-image: url(../assets/images/logo-blue.svg);
                 background-size: contain;
                 height: 8rem;
                 margin: 1rem 1rem 1rem 25dvw;
@@ -183,7 +183,7 @@ body:not(.printable) .slide:not(.current) {
         }
 
         .gopher {
-            background-image: url(/assets/images/gopher.png);
+            background-image: url(../assets/images/gopher.png);
             aspect-ratio: 817 / 436;
             background-size: cover;
             margin-right: 5dvw;
@@ -212,7 +212,7 @@ body:not(.printable) .slide:not(.current) {
             }
 
             .logo {
-                background-image: url(/assets/images/logo-light.svg);
+                background-image: url(../assets/images/logo-light.svg);
                 aspect-ratio: 300 / 112;
                 height: 1.75rem;
             }
