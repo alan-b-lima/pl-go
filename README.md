@@ -2,7 +2,7 @@
 
 This project has the main purpose of serving as presentation slides for a seminar about the Go Programming Language, but I has personally expended to be wide learning experience for me. It features a presentation with functional Go playground with a self-made Go syntatical highligher and code execution server.
 
-Checkout the static version [here](https://alan-b-lima.github.io/pl-go/client/static/static.html). The static version contains limited such as the Go playgrounds. If you want to run the project full locally, follow the instructions at [#Running the Project](#running-the-project).
+Checkout the static version [here](https://alan-b-lima.github.io/pl-go/client/public/). The static version contains limited such as the Go playgrounds. If you want to run the project full locally, follow the instructions at [#Running the Project](#running-the-project).
 
 ## Motivation
 

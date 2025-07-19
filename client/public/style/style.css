@@ -40,25 +40,23 @@ body {
     width: 100dvw;
 }
 
-body.printable {
+@media print {
 
-    & {
-        height: auto;
-        width: auto;
+    body {
+        height: auto !important;
+        width: auto !important;
     }
 
     .slide {
-        height: 100dvh;
-        max-width: 100dvw;
+        height: 100dvh !important;
+        max-width: 100dvw !important;
     }
 }
 
-body:not(.printable) .slide:not(.current) {
-    display: none;
-}
-
-.slide.current {
-    display: block;
+@media not print {
+    body .slide:not(.current) {
+        display: none;
+    }
 }
 
 .slide {
@@ -353,6 +351,10 @@ body:not(.printable) .slide:not(.current) {
             background-color: var(--foreground-color);
             border: var(--translucent-border);
             color: var(--code-background);
+        }
+
+        .output a {
+            color: var(--logo-color);
         }
     }
 

@@ -134,41 +134,31 @@ function on_arrow_keydown(evt) {
     }
 }
 function on_input_keydown(evt) {
-    switch (evt.key) {
-        case "Tab":
-            {
-                evt.preventDefault();
-                const selection = window.getSelection();
-                if (selection === null || selection.rangeCount <= 0) {
-                    return;
-                }
-                const range = selection.getRangeAt(0);
-                const tab = document.createTextNode("\t");
-                range.insertNode(tab);
-                range.setStartAfter(tab);
-                range.setEndAfter(tab);
-                selection.removeAllRanges();
-                selection.addRange(range);
-            }
-            break;
-        case "(":
-            {
-            }
-            break;
-        default:
-            {
-            }
-            break;
+    if (evt.key !== "Tab") {
+        return;
     }
+    evt.preventDefault();
+    const selection = window.getSelection();
+    if (selection === null || selection.rangeCount <= 0) {
+        return;
+    }
+    const range = selection.getRangeAt(0);
+    const tab = document.createTextNode("\t");
+    range.insertNode(tab);
+    range.setStartAfter(tab);
+    range.setEndAfter(tab);
+    selection.removeAllRanges();
+    selection.addRange(range);
 }
 function on_run(playground) {
     const code = playground.input.textContent ?? "";
     const arg_params = playground.args.value;
-    const args = arg_params.search(/^\s*$/) === 0
-        ? [] : Array.from(arg_params.match(/[^\s]+/g));
-    playground.output.textContent = "";
+    const args = /^\s*$/.test(arg_params)
+        ? []
+        : Array.from(arg_params.match(/[^\s]+/g));
+    playground.output.replaceChildren();
     run_go_code(code, ...args).then(result => {
-        playground.output.textContent = result.output;
+        playground.output.append(...result.output);
     });
 }
 function on_code_input(evt) {

@@ -1,9 +1,9 @@
 /**
  * Represents the response from running code.
- * @type {{ output: string, exitcode: number }}
+ * @type { output: (string | Node)[], exitcode: number }
  */
 type RunResponse = {
-    output: string
+    output: (string | Node)[]
     exitcode: number
 }
 
@@ -13,15 +13,15 @@ type RunResponse = {
  * @param output the output string from the response.
  * @returns a RunResponse object with the given output and exitcode as NaN.
  */
-function new_run_response(output: string): RunResponse {
-    return { output, exitcode: NaN }
+function new_error_response(...output: (string | Node)[]): RunResponse {
+    return { output: output, exitcode: NaN }
 }
 
 /**
  * A constant representing a bad response.
  * @type {RunResponse}
  */
-const BAD_RESPONSE: RunResponse = new_run_response("Error: bad response")
+const BAD_RESPONSE: RunResponse = new_error_response("Error: bad response")
 
 /**
  * Decodes the base64-encoded output in the result object.
@@ -56,24 +56,28 @@ async function run_go_code(code: string, ...args: string[]): Promise<RunResponse
         body: body
     }
 
-    try {
+    const result = await fetch("/gorun", config)
+    if (!result.ok) {
+        if (result.status === 405) {
+            const anchor = document.createElement("a")
+            anchor.href = "https://github.com/alan-b-lima/pl-go?tab=readme-ov-file#running-the-project"
+            anchor.textContent = "o README do projeto"
 
-        const result = await fetch("/gorun", config)
-        if (!result.ok) {
-            return new_run_response(`Erro: ${result.status} ${result.statusText}`)
+            return new_error_response(
+                "Você deve estar na versão estática da página, não é possível rodar código aqui, confira ",
+                anchor, " para mais informações sobre como rodar código.")
         }
 
-        const response = await result.json()
-        if ("output" in response) {
-            decode_reponse(response)
-            return response
-        }
-
-        return BAD_RESPONSE
-
-    } catch (error) {
-        return new_run_response(`Erro: ${error}`)
+        return new_error_response(`Error: ${result.status} ${result.statusText}`)
     }
+
+    const response = await result.json()
+    if ("output" in response) {
+        decode_reponse(response)
+        return response
+    }
+
+    return BAD_RESPONSE
 }
 
 /**

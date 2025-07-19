@@ -175,34 +175,26 @@ function on_arrow_keydown(evt: KeyboardEvent): void {
 
 function on_input_keydown(evt: KeyboardEvent): void {
 
-    switch (evt.key) {
-        case "Tab": {
-            evt.preventDefault()
-
-            const selection = window.getSelection()
-            if (selection === null || selection.rangeCount <= 0) {
-                return
-            }
-
-            const range = selection.getRangeAt(0)
-            const tab = document.createTextNode("\t")
-
-            range.insertNode(tab)
-            range.setStartAfter(tab)
-            range.setEndAfter(tab)
-
-            selection.removeAllRanges()
-            selection.addRange(range)
-        } break
-
-        case "(": {
-
-        } break
-
-        default: {
-            // console.log(evt)
-        } break
+    if (evt.key !== "Tab") {
+        return
     }
+
+    evt.preventDefault()
+
+    const selection = window.getSelection()
+    if (selection === null || selection.rangeCount <= 0) {
+        return
+    }
+
+    const range = selection.getRangeAt(0)
+    const tab = document.createTextNode("\t")
+
+    range.insertNode(tab)
+    range.setStartAfter(tab)
+    range.setEndAfter(tab)
+
+    selection.removeAllRanges()
+    selection.addRange(range)
 }
 
 function on_run(playground: Playground): void {
@@ -210,13 +202,14 @@ function on_run(playground: Playground): void {
     const code = playground.input.textContent ?? ""
 
     const arg_params = playground.args.value
-    const args: string[] = arg_params.search(/^\s*$/) === 0
-        ? [] : Array.from(arg_params.match(/[^\s]+/g)!)
+    const args: string[] = /^\s*$/.test(arg_params)
+        ? []
+        : Array.from(arg_params.match(/[^\s]+/g)!)
 
-    playground.output.textContent = ""
+    playground.output.replaceChildren()
 
     run_go_code(code, ...args).then(result => {
-        playground.output.textContent = result.output
+        playground.output.append(...result.output)
     })
 }
 

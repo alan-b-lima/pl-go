@@ -1,7 +1,7 @@
-function new_run_response(output) {
-    return { output, exitcode: NaN };
+function new_error_response(...output) {
+    return { output: output, exitcode: NaN };
 }
-const BAD_RESPONSE = new_run_response("Error: bad response");
+const BAD_RESPONSE = new_error_response("Error: bad response");
 function decode_reponse(result) {
     const output = from_base64(result.output);
     if (output === null) {
@@ -17,21 +17,22 @@ async function run_go_code(code, ...args) {
         headers: { "Content-Type": "application/json" },
         body: body
     };
-    try {
-        const result = await fetch("/gorun", config);
-        if (!result.ok) {
-            return new_run_response(`Erro: ${result.status} ${result.statusText}`);
+    const result = await fetch("/gorun", config);
+    if (!result.ok) {
+        if (result.status === 405) {
+            const anchor = document.createElement("a");
+            anchor.href = "https://github.com/alan-b-lima/pl-go?tab=readme-ov-file#running-the-project";
+            anchor.textContent = "o README do projeto";
+            return new_error_response("Você deve estar na versão estática da página, não é possível rodar código aqui, confira ", anchor, " para mais informações sobre como rodar código.");
         }
-        const response = await result.json();
-        if ("output" in response) {
-            decode_reponse(response);
-            return response;
-        }
-        return BAD_RESPONSE;
+        return new_error_response(`Error: ${result.status} ${result.statusText}`);
     }
-    catch (error) {
-        return new_run_response(`Erro: ${error}`);
+    const response = await result.json();
+    if ("output" in response) {
+        decode_reponse(response);
+        return response;
     }
+    return BAD_RESPONSE;
 }
 function to_base64(input) {
     try {
