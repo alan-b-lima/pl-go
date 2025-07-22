@@ -2,11 +2,11 @@
 
 This project has the main purpose of serving as presentation slides for a seminar about the Go Programming Language, but I has personally expended to be wide learning experience for me. It features a presentation with functional Go playground with a self-made Go syntatical highligher and code execution server.
 
-Checkout the static version [here](https://alan-b-lima.github.io/pl-go/client/public/). The static version contains limited such as the Go playgrounds. If you want to run the project full locally, follow the instructions at [#Running the Project](#running-the-project).
+Checkout the static version [here](https://alan-b-lima.github.io/pl-go/client/public/). The static version contains limitations such as the Go playgrounds not working. If you want to run the full project locally, follow the instructions at [#Running the Project](#running-the-project).
 
 ## Motivation
 
-This project started off as a last resource solution, because my PowerPoint free trial ended and I'm not a fan of the other alternatives. So, I started the presentation slides as a static HTML/CSS/JavaScript page. One of the requirements for the presentation is to present the programming language on a IDE and run some simple programs. Initially, I'd use VSCode, but one thing occurred to me, I could, theoretically, run code from the very presentation, just like is possible on the [Go tour](https://go.dev/tour). I had a basic idea of how to do that, since I have some experience with Node.js.
+This project started off as a last resource solution, because my PowerPoint free trial ended and the other alternatives didn't seem fitting. So, I started the presentation slides as a static HTML/CSS/JavaScript page. One of the requirements for the presentation is to present the programming language on a IDE and run some simple programs. Initially, I'd use VSCode, but one thing occurred to me, I could, theoretically, run code from the very presentation, just like is possible on the [Go tour](https://go.dev/tour). I had a basic idea of how to do that, since I have some experience with Node.js.
 
 Since Go is language often used in BackEnd servers, and the presentation is about Go, I had my language of choice. So far I had done not much in the language, a [elementary cellular automaton](https://github.com/alan-b-lima/elementary_cellular_automaton) and two other in-progress side projects, neither of those three had nothing to do with networking. So, this is the result of a good idea that was also a fitting conclusion for the first semester of 2025.
 
